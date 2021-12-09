@@ -1,5 +1,10 @@
 name: "Mirror doc/ to wiki"
-on: push
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'doc/**'
 
 jobs:
   mirror:
@@ -12,7 +17,7 @@ jobs:
       - name: Checkout wiki
         uses: actions/checkout@v2
         with:
-          repository: "Smittyvb/wiki-mirror"
+          repository: "Smittyvb/wiki-mirror.wiki"
           path: wiki-mirror.wiki
       - name: Copy files
         run: |
