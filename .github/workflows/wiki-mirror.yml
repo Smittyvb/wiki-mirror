@@ -28,5 +28,5 @@ jobs:
           rename.ul -v .txt .md *.txt
           git add .
           # only commit if there are changes
-          git diff-index --quiet HEAD -- || git commit "sync from doc/"
+          git diff-index --quiet HEAD -- || git commit -m "sync from doc/"
           git push
