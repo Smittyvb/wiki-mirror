@@ -28,5 +28,5 @@ jobs:
           rename.ul -v .txt .md *.txt
           git add .
           # only commit if there are changes
-          git diff-index --quiet HEAD -- || git commit -m "$LASTMSG" -m "This commit was automatically generated from $LASTHASH"
+          git diff-index --quiet HEAD -- || git commit "sync from doc/"
           git push
