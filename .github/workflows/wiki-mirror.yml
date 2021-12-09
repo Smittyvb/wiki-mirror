@@ -4,17 +4,17 @@ on: push
 jobs:
   mirror:
     runs-on: ubuntu-latest
-  steps:
-    - name: Checkout main
-      uses: actions/checkout@v2
-    - name: Checkout wiki
-      uses: actions/checkout@v2
-      with:
-        repository: "Smittyvb/wiki-mirror"
-    - name: Copy files
-      run: |
-        cp $GITHUB_WORKSPACE/wiki-mirror/doc $GITHUB_WORKSPACE/wiki-mirror.wiki
-        cd $GITHUB_WORKSPACE/wiki-mirror.wiki
-        git add .
-        git commit -m "sync from doc/"
-        git push
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+      - name: Checkout wiki
+        uses: actions/checkout@v2
+        with:
+          repository: "Smittyvb/wiki-mirror"
+      - name: Copy files
+        run: |
+          cp $GITHUB_WORKSPACE/wiki-mirror/doc $GITHUB_WORKSPACE/wiki-mirror.wiki
+          cd $GITHUB_WORKSPACE/wiki-mirror.wiki
+          git add .
+          git commit -m "sync from doc/"
+          git push
