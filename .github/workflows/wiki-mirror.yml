@@ -7,14 +7,20 @@ jobs:
     steps:
       - name: Checkout main
         uses: actions/checkout@v2
+        with:
+          path: wiki-mirror
       - name: Checkout wiki
         uses: actions/checkout@v2
         with:
           repository: "Smittyvb/wiki-mirror"
+          path: wiki-mirror.wiki
       - name: Copy files
         run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "Wiki mirror"
           cp $GITHUB_WORKSPACE/wiki-mirror/doc $GITHUB_WORKSPACE/wiki-mirror.wiki
           cd $GITHUB_WORKSPACE/wiki-mirror.wiki
           git add .
-          git commit -m "sync from doc/"
+          # only commit if there are changes
+          git diff-index --quiet HEAD -- || git commit -m "$LASTMSG" -m "This commit was automatically generated from $LASTHASH"
           git push
